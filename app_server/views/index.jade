@@ -3,3 +3,14 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  .row
+    .col-xs-12.col-sm-8(ng-controller="itemListCtrl")
+      .row.list-group
+        .col-xs-12(ng-repeat="item in data.items")
+          h3 {{ item.name }}
+          p {{ item.description }}
+          p {{ item.startingPrice }}
+          h4 Bids
+          span(ng-repeat="bid in item.bids")
+            p Username: {{ bid.username }}
+            p Price: {{ bid.price }}

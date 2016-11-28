@@ -25,7 +25,7 @@ module.exports.itemsForBid = function(req, res) {
 module.exports.itemsReadOne = function(req, res) {
   console.log('Finding item details', req.params);
   if (req.params && req.params.itemId) {
-    Loc
+    Item
       .findById(req.params.itemId)
       .exec(function(err, item) {
         if (!item) {

@@ -25,7 +25,7 @@ var _showError = function (req, res, status) {
   });
 };
 
-var renderHomepage = function(req, res, responseBody){
+var renderHomepage = function(req, res){
   res.render('index', {
     title: 'Items for bid',
     pageHeader: {
@@ -35,7 +35,38 @@ var renderHomepage = function(req, res, responseBody){
   });
 };
 
-/* GET 'home' page */
+/* GET 'index' page */
 module.exports.itemList = function(req, res){
   renderHomepage(req, res);
+};
+
+
+var renderBidpage = function(req, res){
+  res.render('add-bid', {
+    title: 'Add a Bid',
+    pageHeader: {
+      title: 'Add a Bid',
+      strapline: 'Find items to bid on'
+    }
+  });
+};
+
+/* GET 'Bid' page */
+module.exports.addBid = function(req, res){
+  renderBidpage(req, res);
+};
+
+var renderAddpage = function(req, res){
+  res.render('add-item', {
+    title: 'Add an item',
+    pageHeader: {
+      title: 'Add an Item',
+      strapline: 'Find items to bid on'
+    }
+  });
+};
+
+/* GET 'Add-item' page */
+module.exports.addItem = function(req, res){
+  renderAddpage(req, res);
 };

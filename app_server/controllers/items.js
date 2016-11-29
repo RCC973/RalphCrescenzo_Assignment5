@@ -41,6 +41,7 @@ module.exports.itemList = function(req, res){
 };
 
 
+
 var renderBidpage = function(req, res){
   res.render('add-bid', {
     title: 'Add a Bid',
@@ -55,6 +56,8 @@ var renderBidpage = function(req, res){
 module.exports.addBid = function(req, res){
   renderBidpage(req, res);
 };
+
+
 
 var renderAddpage = function(req, res){
   res.render('add-item', {

@@ -1,5 +1,26 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
+    .row(ng-controller="itemListCtrl")
+    h2 {{ data.items.name }}
+    p {{"Starting Price: $" + data.items.startingPrice }}
+    h4 Current Bids
+    span(ng-repeat="bid in data.items.bids")
+        p Price: ${{ bid.price }}
+    .row
+        .col-xs-12.col-sm-8
+            .error {{ message }}
+            .col-xs-12.col-md-6
+                form.form-horizontal(action="#{url}", method="post", role="form")
+                    - if (error == "val")
+                    .alert.alert-danger(role="alert") All fields required, please try again
+                    .form-group
+                        label.col-xs-10.col-sm-2.control-label(for="username") Username
+                        .col-xs-12.col-sm-10
+                            input#username.form-control(name="username")
+                    .form-group
+                        label.col-sm-2.control-label(for="review") Review
+                        .col-sm-10
+                            input#review.form-control(name="new bid")
+                    button.btn.btn-default.pull-right Post my bid
+            .col-xs-12.col-md-4

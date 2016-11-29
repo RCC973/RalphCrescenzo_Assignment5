@@ -4,13 +4,17 @@ block content
   h1= title
   p Welcome to #{title}
   .row
+    .col-xs-12.col-sm-8
+      a.button(href='/add-item') Add Item
+  .row
     .col-xs-12.col-sm-8(ng-controller="itemListCtrl")
+      .error {{ message }}
       .row.list-group
         .col-xs-12(ng-repeat="item in data.items")
           h3 {{ item.name }}
           p {{ item.description }}
-          p {{ item.startingPrice }}
-          h4 Bids
+          p {{"Starting Price: $" + item.startingPrice }}
+          h4 Highest Bid
           span(ng-repeat="bid in item.bids")
-            p Username: {{ bid.username }}
-            p Price: {{ bid.price }}
+            p Price: ${{ bid.price }}
+          a.button(href='/items/{{ item._id }}') See Bids or Add Bid

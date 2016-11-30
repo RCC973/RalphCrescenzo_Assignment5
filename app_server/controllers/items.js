@@ -25,6 +25,28 @@ var _showError = function (req, res, status) {
   });
 };
 
+var getItemInfo = function (req, res, callback) {
+  var requestOptions, path;
+  path = "/api/items/" + req.params.itemId;
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "GET",
+    json : {}
+  };
+  request(
+      requestOptions,
+      function(err, response, body) {
+        var data = body;
+        if (response.statusCode === 200) {
+          console.log('request is working')
+          callback(req, res, data);
+        } else {
+          _showError(req, res, response.statusCode);
+        }
+      }
+  );
+};
+
 var renderHomepage = function(req, res){
   res.render('index', {
     title: 'Items for bid',
@@ -42,13 +64,14 @@ module.exports.itemList = function(req, res){
 
 
 
-var renderBidpage = function(req, res){
+var renderBidpage = function(req, res, itemDetail){
   res.render('add-bid', {
-    title: 'Add a Bid',
+    title: 'Add a Bid for ',
     pageHeader: {
       title: 'Add a Bid',
-      strapline: 'Find items to bid on'
-    }
+    },
+    error: req.query.err,
+    url: req.originalUrl
   });
 };
 
@@ -61,10 +84,10 @@ module.exports.addBid = function(req, res){
 
 var renderAddpage = function(req, res){
   res.render('add-item', {
-    title: 'Add an item',
+    title: 'Add a New Item',
     pageHeader: {
-      title: 'Add an Item',
-      strapline: 'Find items to bid on'
+      title: 'Add a New Item',
+      strapline: 'Add Items for Others to Bid On'
     }
   });
 };

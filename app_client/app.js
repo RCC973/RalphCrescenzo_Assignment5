@@ -12,7 +12,7 @@ function config ($routeProvider) {
             controller: 'itemCtrl',
             controllerAs: 'vm'
         })
-        .when('/add-bid', {
+        .when('/add-bid/:itemId', {
             templateUrl: 'add-bid/add-bid.view.html',
             controller: 'bidCtrl',
             controllerAs: 'vm'

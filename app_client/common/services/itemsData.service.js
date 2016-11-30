@@ -4,6 +4,7 @@
 angular
     .module('myApp')
     .service('itemsData', itemsData)
+    .service('itemData', itemData)
     .service('postData', postData);
 
 function itemsData ($http)  {
@@ -12,4 +13,13 @@ function itemsData ($http)  {
 
 function postData ($http)  {
     return $http.post('/api/items');
+};
+
+function itemData ($http)  {
+    var itemById = function (itemId) {
+        return $http.get('/api/items/' + itemId);
+    };
+    return {
+        itemById : itemById
+    };
 }

@@ -20,7 +20,7 @@
                 <h4>Highest Bid</h4>
                 <span ng-repeat="bid in item.bids | orderBy: 'price'">
                 <p>Price: ${{ bid.price }}</p></span>
-                <div><a class="button" href="/#add-bid">See Bids or Add Bid</a></div>
+                <div><a class="button" href="/#/add-bid/{{ item._id }}">See Bids or Add Bid</a></div>
             </div>
         </div>
     </div>

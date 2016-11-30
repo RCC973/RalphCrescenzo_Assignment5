@@ -1,7 +1,7 @@
 <div ng-controller="bidCtrl" class="row">
     <h2>{{ vm.data.items.name }}</h2>
     <p>{{"Starting Price: $" + vm.data.items.startingPrice }}</p>
-    <h4>Current Bids</h4><span ng-repeat="bid in data.items.bids">
+    <h4>Current Bids</h4><span ng-repeat="bid in data.items.bids | orderBy: 'price'">
     <p>Price: ${{ bid.price }}</p></span>
     <div class="row">
         <div class="col-xs-12 col-sm-8">

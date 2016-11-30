@@ -1,0 +1,27 @@
+<h1> {{ vm.pageHeader.title }}
+    <br>
+<small>{{ vm.pageHeader.strapline }}</small>
+</h1>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8">
+        <div><a class="button" href="/#add-item">Add Item</a></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8" ng-controller="homeCtrl">
+        <div class="error">{{ vm.message }}</div>
+        <div class="row list-group">
+            <div class="col-xs-12" ng-repeat="item in vm.data.items">
+                <h3> {{ item.name }}</h3>
+                <p> {{ item.description }} </p>
+                <p> {{"Starting Price: $" + item.startingPrice }} </p>
+                <h4>Highest Bid</h4>
+                <span ng-repeat="bid in item.bids | orderBy: 'price'">
+                <p>Price: ${{ bid.price }}</p></span>
+                <div><a class="button" href="/#add-bid">See Bids or Add Bid</a></div>
+            </div>
+        </div>
+    </div>
+</div>

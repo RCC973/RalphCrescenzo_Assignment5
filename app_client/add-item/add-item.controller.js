@@ -17,3 +17,7 @@ function itemCtrl (postData) {
             vm.message = "Sorry, can't find anything";
         });
 };
+
+vm.onSubmit = function() {
+    $http.post('/api/items', vm.formData);
+};

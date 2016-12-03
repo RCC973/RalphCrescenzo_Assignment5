@@ -20,4 +20,16 @@ function bidCtrl ($routeParams, itemData) {
         .error(function (e) {
             console.log(e);
         });
-}
+};
+
+/* Better way to grab highest price for bids? */
+vm.onSubmit = function(){
+    vm.highest = Math.max(vm.data.items.itemId.bids.price);
+    if(vm.formData.newbid > vm.highest){
+        vm.formError = "Bid not accepted, try again buddy";
+        return false;
+    } else {
+        $http.post("/api/items/" + vm.itemId + "/bids", vm.formData);
+        vm.message = "Your Bid is Posted"
+    }
+};
